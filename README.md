@@ -66,7 +66,7 @@ This is the recommended method for installing dependencies. Please make sure you
 
 First create the environment for the book that contains all the dependencies:
 ```bash
-conda env create --file langchain_ai.yaml --force
+conda env create --file environment.yml --force
 ```
 
 The conda environment is called `langchain_ai`. You can activate it as follows:
@@ -138,7 +138,7 @@ If you find anything amiss with the notebooks or dependencies, please feel free 
 
 If you want to change the conda dependency specification (the yaml file), you can test it like this:
 ```bash
-conda env create --file langchain_ai.yaml --force
+conda env create --file environment.yml --force
 ```
 
 You can update the pip requirements like this:
