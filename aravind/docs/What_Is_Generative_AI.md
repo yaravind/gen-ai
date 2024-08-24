@@ -1,6 +1,15 @@
 ## What Is Generative AI
 
+Table of Contents
+=================
+
+   * [What Is Generative AI](#what-is-generative-ai)
+   * [Introduction](#introduction)
+   * [Technology evolution](#technology-evolution)
+
 > GPT is **G**enerative **P**re-trained **T**ransformer.
+
+## Introduction
 
 Gen AI refers to class of algorithms that can _generate novel_ content (based on patterns learned from data), as opposed to analyzing or acting on _existing_ data like more traditional, predictive machine learning or AI systems. These Gen AI models also provide wide functionality including semantic search, content manipulation, and classification. The key difference between generative, over traditional models, is that generative models synthesize new data rather than just making predictions or decisions.
 
