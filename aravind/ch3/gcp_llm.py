@@ -10,8 +10,6 @@ from langchain.prompts import ChatPromptTemplate
 
 set_environment()
 
-print(f"LangChain version: {langchain.__version__}")
-
 # Vertex AI
 #print(f"Vertex AI SDK version: {aiplatform.__version__}")
 
