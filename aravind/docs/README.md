@@ -1,6 +1,7 @@
 ## Notes
 
 1. [Chapter 1 - What Is Generative AI](What_Is_Generative_AI.md)
+2. [Chapter 2 - Building Capable Assistants](Building_Capable_Assistants.md)
 
 To run LLM's locally, we can use `Ollama` or `GPT4All`.
 
