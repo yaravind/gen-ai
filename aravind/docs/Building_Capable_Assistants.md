@@ -34,4 +34,32 @@ the text into smaller parts and summarizing each part separately. The summaries 
 summary.
 
 This repeated rewriting under length constraint forces increasing abstraction, fusion of details, and compression to
-make room for additional entities in each step. This method is implemented in LangChain as `LLMSummarizerChain`.
+make room for additional entities in each step. This method is implemented in LangChain as
+`from langchain.chains.summarize import load_summarize_chain`.
+
+### Map-Reduce pipeline
+
+To summarize long documents, we can split the document into smaller chunks that are suitable for the token context
+length of the LLM and them apply map-reduce as follows:
+
+1. Map: Each chunk is passed through a summarization chain
+2. Collapse: Summarized chunks are combined into a single document
+3. Reduce: The collapsed document is passed through the final LLM chain to produce output
+
+Advantages:
+
+- Allows parallel processing
+- Enables the use of LLMs for reasoning, generating etc.
+
+## Monitor
+
+For any serious usage of Gen AI, we need to understand the
+
+- Capabilities
+- pricing options
+- use-case for different language models
+
+| model                                                    | capabilities                                                                                                         |
+|----------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------|
+| GPT-3.5-Turbo                                            | specialize in dialogue ppa (chatbots, virtual assistants), capable of generating responses with accuracy and fluency |
+| Instruct GPT (Ada: speed, Davinci: Complex instructions) | specialize in single-turn instruction following, capable of generating code, recipes, etc.                           |
