@@ -33,5 +33,5 @@ __pycache__/
 
 # Logs
 logs/
-!/config.py
 /private/
+/config.py
