@@ -26,3 +26,13 @@ You can use the app to download the models. It stores the downloaded models unde
 both
 model blobs and manifests.
 > You can get the list of models supported by ollama here: https://docs.gpt4all.io/gpt4all_desktop/models.html
+
+### RAG
+
+For a current Retrieval-Augmented Generation (RAG) project, fine-tuning every parameter to ensure high-quality outputs.
+
+- Beyond adjusting temperature or token limits, tweaking parameters like top-k (how many answer options to consider),
+  top-p (how random the choices are), and frequency penalties (to avoid repeating answers).
+- Combine that with smart retrieval—like choosing between keyword, semantic or hybrid search and deciding how many
+  documents to pull—and you're not just pulling data; you're shaping it into meaningful insights.
+- Building the right Large Language Model RAG system is a lot about experimentation—there’s no one-size-fits-all.

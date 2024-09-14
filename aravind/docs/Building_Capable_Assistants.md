@@ -1,9 +1,9 @@
-## Building Capable Assistants
+## 1. Building Capable Assistants
 
 - To instill greater intelligence, productivity and trustworthiness in LLMs, we need to enhance LLMs through prompts,
   tools and structured reasoing techniques.
 
-### Hallucination
+### 1.1. Hallucination
 
 This can be addressed by automating fact-checking and source verification. By verifying claims against the available
 evidence, we can reduce the spread of misinformation. Fact-checking involves three main steps:
@@ -26,7 +26,7 @@ Example:
 
 > The above method doesn't guarantee correct answers, but it can put a stop to some incorrect results
 
-## Summarization
+## 2. Summarization
 
 For summarizing few sentences, basic prompting "Summarize this text: {text}" works but for longer texts, it is better
 to use Chain of Density (CoD) method to incrementally increase the information density. This method involves breaking
@@ -37,7 +37,7 @@ This repeated rewriting under length constraint forces increasing abstraction, f
 make room for additional entities in each step. This method is implemented in LangChain as
 `from langchain.chains.summarize import load_summarize_chain`.
 
-### Map-Reduce pipeline
+### 2.1. Map-Reduce pipeline
 
 To summarize long documents, we can split the document into smaller chunks that are suitable for the token context
 length of the LLM and them apply map-reduce as follows:
@@ -51,7 +51,7 @@ Advantages:
 - Allows parallel processing
 - Enables the use of LLMs for reasoning, generating etc.
 
-## Monitor
+## 3. Monitor
 
 For any serious usage of Gen AI, we need to understand the
 
@@ -63,3 +63,21 @@ For any serious usage of Gen AI, we need to understand the
 |----------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------|
 | GPT-3.5-Turbo                                            | specialize in dialogue ppa (chatbots, virtual assistants), capable of generating responses with accuracy and fluency |
 | Instruct GPT (Ada: speed, Davinci: Complex instructions) | specialize in single-turn instruction following, capable of generating code, recipes, etc.                           |
+| Codex                                                    | specialize in multi-turn instruction following, capable of generating code, recipes, etc.                            |
+
+## Instruction Tuning & Function Calling
+
+OpenAI's function calling builds on *instruction tuning*. By describing function in a schema, developers can tune LLMs
+to return *structured outputs* adhering to that schema. Use-cases:
+
+- Information Extraction: This capability can be used to *extract entities* from a text by outputting them in a
+  predefined JSON format. We can extract specific entities and their properties using OpenAI *chat models*.
+- Create chatbots that can answer questions using external tools or OpenAI plugins.
+- Convert natural language queries int API calls or database queries.
+
+Supported OpenAI models: `gpt-4-0613`, `gpt-3.5-turbo-0613`
+
+Developers define the function to the model using JSON schema using the `/v1/chat/completions` endpoint.
+
+> Instruction tuning and function calling allow models to produce callable code. This leads to tool integrations, where
+> LLM agents can execute these function calls to connect LLMs with live data, services and runtime environments.
