@@ -1,7 +1,9 @@
-## Notes
+## Introduction
 
 1. [Chapter 1 - What Is Generative AI](What_Is_Generative_AI.md)
 2. [Chapter 2 - Building Capable Assistants](Building_Capable_Assistants.md)
+
+## Models
 
 To run LLM's locally, we can use `Ollama` or `GPT4All`.
 
@@ -36,3 +38,8 @@ For a current Retrieval-Augmented Generation (RAG) project, fine-tuning every pa
 - Combine that with smart retrieval—like choosing between keyword, semantic or hybrid search and deciding how many
   documents to pull—and you're not just pulling data; you're shaping it into meaningful insights.
 - Building the right Large Language Model RAG system is a lot about experimentation—there’s no one-size-fits-all.
+
+## Tools
+
+All tools (DuckDuckGo Search, wikipedia etc.) have their specific purpose that is part of the description. **This
+description is passed to the LLMS to provide context and help them generate better responses.**
