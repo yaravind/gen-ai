@@ -3,6 +3,14 @@
 1. [Chapter 1 - What Is Generative AI](What_Is_Generative_AI.md)
 2. [Chapter 2 - Building Capable Assistants](Building_Capable_Assistants.md)
 
+## Tokens
+
+Tokens are the smallest unit of text that a language model can understand.
+Use [this tool](https://platform.openai.com/tokenizer) to understand how some OpenAI models tokenize
+text: https://platform.openai.com/tokenizer.
+
+```one plus one is two``` is tokenized as ```['one', 'plus', 'one', 'is', 'two']```. **5 tokens.**
+
 ## Models
 
 To run LLM's locally, we can use `Ollama` or `GPT4All`.
