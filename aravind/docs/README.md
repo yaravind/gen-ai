@@ -47,7 +47,48 @@ For a current Retrieval-Augmented Generation (RAG) project, fine-tuning every pa
   documents to pull—and you're not just pulling data; you're shaping it into meaningful insights.
 - Building the right Large Language Model RAG system is a lot about experimentation—there’s no one-size-fits-all.
 
+### Evaluation
+
+Not all retrieval metrics are created equal.
+
+* Precision: How many retrieved items are relevant?
+* Recall: How many relevant items were retrieved?
+* MRR: How relevant is the top hit?
+* MAP: How is the average precision across all queries?
+* NDCG: How well-ordered are the results?
+
+Measure what matters. Choose the right metric.
+
 ## Tools
 
 All tools (DuckDuckGo Search, wikipedia etc.) have their specific purpose that is part of the description. **This
-description is passed to the LLMS to provide context and help them generate better responses.**
+description is passed to the LLMs to provide context and help them generate better responses.**
+
+## Quantization
+
+Replace a continuous value with a discrete value. Quantization, in mathematics and digital signal
+processing, is the process of mapping input values from a large set to output values in a smaller set, often with a
+finite number of elements. Rounding and truncation are typical examples of quantization processes.
+
+In the context of LLMs, quantization is used to reduce the number of bits used to represent the weights of the model.
+This can lead to a smaller model size and faster inference times, but may also result in a loss of precision.
+
+### Scalar Quantization
+
+Scalar quantization reduces the memory of your embeddings by 4x. In a nutshell, scalar quantization converts float to
+integer representation. That’s 32 bits per dimension to 8 bits per dimension. That’s a 4x memory reduction.
+
+How does it work?
+
+1. Take the min and max
+2. Divide range into 256 bins
+3. Convert float32s to 8 bit integers
+
+While this is a lossy compression and can lead to some performance losses, it will also save you memory and cost and
+speed up search.
+
+![](quantization.jpeg)
+
+## Reference
+
+- [Chunking Visualizer](https://chunkviz.up.railway.app/)
