@@ -1,6 +1,6 @@
 ## Retrieval Augmented Generation (RAG)
 
-<div style="border: 2px solid black;">![RAG](RAG.jpeg)</div>
+<span style="border: 2px solid black;">![RAG](RAG.jpeg)</span>
 
 Different types of RAG:
 
