@@ -1,7 +1,9 @@
 ## Introduction
 
-1. [Chapter 1 - What Is Generative AI](What_Is_Generative_AI.md)
-2. [Chapter 2 - Building Capable Assistants](Building_Capable_Assistants.md)
+1. [Chapter 1     - What Is Generative AI](What_Is_Generative_AI.md)
+2. [Chapter 2 & 3 - Getting Started with LangChain](Getting_Started_with_LangChain.md)
+3. [Chapter 4     - Building Capable Assistants](Building_Capable_Assistants.md)
+4. [Chapter 5     - RAG](RAG.md)
 
 ## Tokens
 
