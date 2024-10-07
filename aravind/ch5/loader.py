@@ -1,11 +1,12 @@
+import logging
+
 from langchain_core.documents import Document
 from langchain_community.document_loaders import UnstructuredMarkdownLoader, DirectoryLoader
-from config import set_environment
-import nltk
-import os
+
 from genai_utils import download_nltk_resource
 
-set_environment()
+LOG = logging.getLogger('indexer')
+
 
 
 def install_nltk():
@@ -37,6 +38,6 @@ def get_docs_for_all_paths(paths: list[str]) -> list[Document]:
     all_docs = []
     for path in paths:
         docs = get_docs(path)
-        print(f"Path: {path}, Markdown file count: {len(docs)}")
+        LOG.debug(f"Path: {path}, Markdown file count: {len(docs)}")
         all_docs.extend(docs)
     return all_docs

@@ -23,7 +23,7 @@ def get_chunks_for_all_docs(docs: list[Document]) -> list[Document]:
 
 
 def print_chunks(chunks: list[Document]):
-    print(f"Chunk count: {len(chunks)}")
+    LOG.debug(f"Chunk count: {len(chunks)}")
     for chunk in chunks:
-        print(f"Metadata: {chunk.metadata}")
-        print(chunk.page_content)
+        LOG.debug(f"Metadata: {chunk.metadata}")
+        LOG.debug(chunk.page_content)
