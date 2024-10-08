@@ -25,7 +25,7 @@ def count_result_set(result_sets):
 
 
 # update below code to return only top k chunks
-def get_top_k(result_sets, top_k=5):
+def get_top_k(result_sets, top_k=5) -> list[str]:
     chunks = []
     for result_set in result_sets:
         for result in result_set:

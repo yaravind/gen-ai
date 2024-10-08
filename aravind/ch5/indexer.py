@@ -34,7 +34,7 @@ def log_collection(vec_store: MilvusClient, collection_name: str, index_name: st
     LOG.debug(f"Description: {collection_info['description']}")
     indexes = vec_store.list_indexes(collection_name)
     fields = collection_info['fields']
-    LOG.debug(f"Field count:{len(fields)}")
+    LOG.debug(f"Field count: {len(fields)}")
     for field in fields:
         LOG.debug(f"  - Name: {field['name']}, DataType: {field['type']}, Is Primary: {field.get('is_primary', False)}")
 

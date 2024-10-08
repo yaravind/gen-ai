@@ -1,3 +1,7 @@
+from langchain.chains.llm import LLMChain
+from langchain import PromptTemplate
+from langchain_openai import ChatOpenAI
+
 from aravind.ch5.embedder import get_embeddings
 from aravind.ch5.indexer import create_milvus_client, create_collection, log_collection, create_index
 from aravind.ch5.loader import get_docs_for_all_paths
@@ -25,13 +29,14 @@ logging.basicConfig(filename='/Users/O60774/Downloads/logs/python-app.log', leve
                     format=FORMAT)
 LOG = logging.getLogger('aravind.ch5')
 
-logging.getLogger('pymilvus').setLevel(logging.DEBUG)
+logging.getLogger('pymilvus').setLevel(logging.ERROR)
 
 logging.getLogger('aravind.ch5').setLevel(logging.DEBUG)
-logging.getLogger('embedder').setLevel(logging.ERROR)
 logging.getLogger('loader').setLevel(logging.ERROR)
+logging.getLogger('embedder').setLevel(logging.ERROR)
 logging.getLogger('chunker').setLevel(logging.ERROR)
 logging.getLogger('indexer').setLevel(logging.DEBUG)
+logging.getLogger('searcher').setLevel(logging.DEBUG)
 logging.getLogger('genai_utils').setLevel(logging.DEBUG)
 
 # Start process
@@ -113,12 +118,60 @@ log_elapsed_time(start_time, f"Insert {len(vectors)} vectors")
 
 # Single-vector search
 start_time = time.time()
-res = search_for("explain shuffle in spark", vec_store, COLLECTION_NAME, METRIC_TYPE)
+user_question = "explain shuffle in spark"
+res = search_for(user_question, vec_store, COLLECTION_NAME, METRIC_TYPE)
 log_elapsed_time(start_time, f"Single-vector search")
 LOG.debug(f"Search results count: {count_result_set(res)}")
 
-for re in get_top_k(res, 3):
-    print(pretty_json(re))
+# for re in get_top_k(res, 3):
+#     print(pretty_json(re))
 
+# Generate
+prompt_text = """
+System Instruction: You are a highly intelligent and responsive AI language model designed to assist with answering 
+questions based on provided context. Here's the information you need:
+
+### Retrieved Chunks:
+{context}
+
+### User Question:
+{user_question}
+
+### Response:
+Using the context provided in the retrieved chunks, answer the user's question comprehensively and accurately.
+"""
+context_chunks = get_top_k(res, 2)
+
+context = "\n---\n".join(
+    [f"chunk {i}: {chunk_obj['chunk'].replace('\n\n', '\n').replace('\r\r', '\n')}" for i, chunk_obj in
+     enumerate(context_chunks)])
+
+# print("-" * 150)
+# print(f"Context:\n {context}")
+
+prompt_template = PromptTemplate.from_template(template=prompt_text)
+#partial_prompt = prompt_template.partial(user_question=user_question)
+
+# Interpolate each element of the list into the placeholders in the prompt
+# for item in get_top_k(res, 2):
+#     interpolated_text = prompt_template.format(context=context, user_question=user_question)
+#     print(interpolated_text)
+#     print("-" * 50)  # Separator for clarity
+
+# Setup LLM and QA chain; set temperature low to keep hallucinations in check
+LLM = ChatOpenAI(
+    model_name="gpt-3.5-turbo", temperature=0, streaming=False
+)
+
+llm_chain = LLMChain(prompt=prompt_template, llm=LLM, verbose=False)
+start_time = time.time()
+answer = llm_chain.run({"context": context, "user_question": user_question})
+log_elapsed_time(start_time, f"Generate response")
+
+LOG.debug(f"Question: {user_question}")
+LOG.debug(f"Answer  : {answer}")
+print(answer)
+
+# Shutdown
 LOG.debug("Milvus client is connected. Close the connection.")
 vec_store.close()
